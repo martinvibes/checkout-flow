@@ -4,6 +4,7 @@ import addBtn from "./images/add.png";
 import subBtn from "./images/minus.png";
 import BillingShippingInfo from "./components/BillingShippingInfo";
 import x from "./images/x.svg";
+import Modal from "./components/Modal";
 // import cancel from "./images/.png";
 
 function App() {
@@ -12,9 +13,9 @@ function App() {
       <div className="">
         <Header />
         <Navigation />
+        {/* <Modal /> */}
         <StepsLoader />
         <ShoppingCart />
-        <BillingShippingInfo />
       </div>
     </div>
   );
@@ -62,7 +63,7 @@ function StepsLoader() {
 function ShoppingCart() {
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between ml-2 items-start">
         {/* <BillingShippingInfo /> */}
         <SummaryTable />
         <OrderSummary />
@@ -73,7 +74,7 @@ function ShoppingCart() {
 
 function SummaryTable() {
   return (
-    <div className=" ml-leftSpace border w-shoppingCart h-scartandorder p-5 mr-4 rounded-xl">
+    <div className=" ml-leftSpace border w-shoppingCart h-scartandorder p-5 mr-3 rounded-xl">
       <div className=" mb-font20 flex justify-between items-center">
         <h2 className="  font-semibold text-2xl">Shopping cart</h2>
         <h4 className=" text-main font-medium">Proceed to checkout</h4>
@@ -81,7 +82,7 @@ function SummaryTable() {
       <div className=" w-full">
         <table className="w-full">
           <thead className="">
-            <tr className=" bg-light">
+            <tr className=" text-main bg-light">
               <th className=" p-font20 text-left">item</th>
               <th className=" p-font20 text-left">Price</th>
               <th className=" p-font20 text-left ">Quantity</th>
