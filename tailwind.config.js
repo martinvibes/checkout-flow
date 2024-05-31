@@ -8,6 +8,11 @@ module.exports = {
         light: "#E6F3ED",
         darkColor: "#747474",
         modalColor: "#EAEAEA",
+        myCartColor: "#2F2F30",
+      },
+      borderColor: {
+        main: "#EAEAEA",
+        mainBod: "#008349",
       },
       width: {
         shoppingCart: "770px",
@@ -15,8 +20,10 @@ module.exports = {
         scartandorder: "333px",
         billingWidth: "351px",
         modalWidth: "1040px",
+        orderConfirm: "1170px",
         top1: "1040px",
         modalButton: "181px",
+        mycart: "460px",
       },
       height: {
         scartandorder: "332px",
@@ -25,7 +32,9 @@ module.exports = {
         purchaseHeight: "213px",
         modalHeight: "352px",
         modalBtnHeight: "52px",
+        mycart: "397px",
         backdropH: "160vh",
+        orderConfirm: "628px",
       },
       padding: {
         leftSpace: "135px",

@@ -10,16 +10,22 @@ function Header() {
       <div className=" text-main flex justify-center items-center text-base my-6">
         <div className=" mr-12">
           <ul className="flex items-center justify-center">
-            <li className="pr-5 ">Home</li>
+            <li className="pr-5 ">
+              <a href="/">Home</a>
+            </li>
             <li className="pr-5 ">
               <div className="flex items-center justify-center">
-                <p>Product & Services</p>
+                <p>
+                  <a href="/"> Product & Services</a>
+                </p>
                 <img src={downArrow} alt="down arrow" />
               </div>
             </li>
             <li className="pr-5 ">
               <div className="flex justify-center items-center">
-                <p>About Us</p>
+                <p>
+                  <a href="/"> About Us</a>
+                </p>
                 <img src={downArrow} alt="down arrow" />
               </div>
             </li>
@@ -33,11 +39,20 @@ function Header() {
                   className=" w-40 ml-1 border-collapse outline-none px-1"
                   type="text"
                 />
-                <img className="w-8" src={search} alt="search icon" />
+                <img
+                  className="w-8 cursor-pointer"
+                  src={search}
+                  alt="search icon"
+                />
               </div>
             </li>
             <li className="pr-5 ">
-              <div className="flex">
+              <div className="relative flex">
+                <div className=" absolute -top-3 right-11">
+                  <span className=" text-xs rounded-full bg-main text-white px-1 w-fit">
+                    1
+                  </span>
+                </div>
                 <img
                   className=" mr-5 ml-1 w-7"
                   src={addTOcart}
@@ -53,7 +68,7 @@ function Header() {
                   src={global}
                   alt="country or globe icon"
                 />
-                <span className=" absolute w-1 h-6 bg-main top-1/2 -translate-y-1/2 left-1/3"></span>
+                <span className=" absolute w-0.5 h-6 bg-main top-1/2 -translate-y-1/2 left-1/3"></span>
                 <span className=" text-base ml-3">CAN-EN</span>
               </div>
             </li>

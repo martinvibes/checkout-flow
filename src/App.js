@@ -2,9 +2,12 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import addBtn from "./images/add.png";
 import subBtn from "./images/minus.png";
-import BillingShippingInfo from "./components/BillingShippingInfo";
 import x from "./images/x.svg";
+import checkGood from "./images/check-good.png";
+import MyCart from "./components/MyCart";
+import BillingShippingInfo from "./components/BillingShippingInfo";
 import Modal from "./components/Modal";
+import OrderConfirmation from "./components/OrderConfirmation";
 // import cancel from "./images/.png";
 
 function App() {
@@ -14,7 +17,9 @@ function App() {
         <Header />
         <Navigation />
         {/* <Modal /> */}
+        {/* <MyCart /> */}
         <StepsLoader />
+        {/* <OrderConfirmation /> */}
         <ShoppingCart />
       </div>
     </div>
@@ -24,11 +29,15 @@ function App() {
 function StepsLoader() {
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="flex my-10 w-10/12 relative justify-around items-center">
+      <div className="flex my-10 w-11/12 relative justify-around items-center">
         <div>
           <div className="flex justify-center items-center">
             <div className="  font-medium text-center rounded-full text-white w-10 p-2 bg-green-700">
-              01
+              {1 ? (
+                "01"
+              ) : (
+                <img className=" w-6" src={checkGood} alt="check good icon" />
+              )}
             </div>
           </div>
           <p className="mt-4">Shopping cart</p>
@@ -38,19 +47,27 @@ function StepsLoader() {
           <div className="flex justify-center items-center">
             <div
               className={
-                "text-center font-medium shadow text-green-700 rounded-full bg-white w-10 p-2"
+                "text-center font-medium shadow text-main rounded-full bg-white w-10 p-2"
               }
             >
-              02
+              {2 ? (
+                "02"
+              ) : (
+                <img className=" w-6" src={checkGood} alt="check good icon" />
+              )}
             </div>
           </div>
           <p className="mt-4">Checkout</p>
         </div>
-        <span className="  -z-10 absolute left-1/2 w-1/3 top-1/4 bg-slate-200 h-1"></span>
+        <span className="  -z-10 absolute left-1/2 w-1/3 top-1/4 bg-main h-1"></span>
         <div>
           <div className="flex justify-center items-center">
             <div className=" font-medium shadow text-center rounded-full text-green-700 w-10 p-2 bg-white">
-              03
+              {3 ? (
+                "03"
+              ) : (
+                <img className=" w-6" src={checkGood} alt="check good icon" />
+              )}
             </div>
           </div>
           <p className="mt-4">Order Confirmation</p>
@@ -116,7 +133,7 @@ function SummaryTable() {
               </td>
               <td className=" pt-font20 pl-font20">$2060.80</td>
               <td className=" pt-font20 pl-font20">
-                <img src={x} alt="minus icon" />
+                <img className=" cursor-pointer" src={x} alt="minus icon" />
               </td>
             </tr>
           </tbody>
