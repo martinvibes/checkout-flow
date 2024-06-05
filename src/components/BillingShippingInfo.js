@@ -1,7 +1,6 @@
 import { useState } from "react";
 import addTransparentBtn from "../images/add-transparent.png";
 import calender from "../images/calendar.png";
-import subBtn from "../images/minus.png";
 import x from "../images/x.svg";
 import Modal from "./Modal";
 // import cancel from "./images/.png";

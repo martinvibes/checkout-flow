@@ -8,7 +8,6 @@ import MyCart from "./components/MyCart";
 import BillingShippingInfo from "./components/BillingShippingInfo";
 import OrderConfirmation from "./components/OrderConfirmation";
 import React, { useState } from "react";
-import cancel from "./images/times-modal-red.svg";
 
 function App() {
   const [proceed, setProceed] = useState(false);

@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import cancel from "../images/times-modal-red.svg";
-import BillingShippingInfo from "./BillingShippingInfo";
-import OrderConfirmation from "./OrderConfirmation";
-import { OrderSummary, ShoppingCart } from "../App";
 
 function Modal({ setModal, setSubmit }) {
   function handleSubmit() {
