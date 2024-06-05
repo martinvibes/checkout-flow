@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .in-active {
+    @apply bg-white text-main;
+  }
+  .active-steps {
+    @apply bg-main text-white;
+  }
+  .home-btn {
+    @apply mb-4 mt-3 w-full rounded-full bg-green-700 p-3 text-center text-white;
+  }
+}

@@ -6,67 +6,89 @@ import x from "./images/x.svg";
 import checkGood from "./images/check-good.png";
 import MyCart from "./components/MyCart";
 import BillingShippingInfo from "./components/BillingShippingInfo";
-import Modal from "./components/Modal";
 import OrderConfirmation from "./components/OrderConfirmation";
-// import cancel from "./images/.png";
+import React, { useState } from "react";
+import cancel from "./images/times-modal-red.svg";
 
 function App() {
+  const [proceed, setProceed] = useState(false);
+  const [step, setStep] = useState(1);
+  const [submit, setSubmit] = useState(false);
+
   return (
     <div className="">
       <div className="">
         <Header />
-        <Navigation />
-        {/* <Modal /> */}
-        {/* <MyCart /> */}
-        <StepsLoader />
-        {/* <OrderConfirmation /> */}
-        <ShoppingCart />
+        <Navigation setSubmit={setSubmit} />
+        <StepsLoader
+          step={step}
+          set
+          proceed={proceed}
+          setProceed={setProceed}
+        />
+        {submit ? (
+          <OrderConfirmation />
+        ) : (
+          <ShoppingCart
+            setSubmit={setSubmit}
+            proceed={proceed}
+            setProceed={setProceed}
+          />
+        )}
       </div>
     </div>
   );
 }
 
-function StepsLoader() {
+function StepsLoader({ proceed, step }) {
   return (
-    <div className="flex justify-center items-center w-full">
-      <div className="flex my-10 w-11/12 relative justify-around items-center">
+    <div className="flex w-full items-center justify-center">
+      <div className="relative my-10 flex w-11/12 items-center justify-around">
         <div>
-          <div className="flex justify-center items-center">
-            <div className="  font-medium text-center rounded-full text-white w-10 p-2 bg-green-700">
-              {1 ? (
-                "01"
+          <div className="flex items-center justify-center">
+            <div className="w-10 rounded-full bg-green-700 p-2 text-center font-medium text-white">
+              {step > 1 ? (
+                <img className="w-6" src={checkGood} alt="check good icon" />
               ) : (
-                <img className=" w-6" src={checkGood} alt="check good icon" />
+                "01"
               )}
             </div>
           </div>
           <p className="mt-4">Shopping cart</p>
         </div>
-        <span className=" -z-10 absolute right-1/2 w-1/3 top-1/4  bg-green-700 h-1"></span>
+        <span className="absolute right-1/2 top-1/4 -z-10 h-1 w-1/3 bg-green-700"></span>
         <div>
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <div
-              className={
-                "text-center font-medium shadow text-main rounded-full bg-white w-10 p-2"
-              }
+              className={`rounded-full text-center font-medium shadow ${
+                step >= 2 ? "active-steps" : "in-active"
+              } w-10 p-2`}
             >
-              {2 ? (
-                "02"
+              {step >= 2 ? (
+                <img className="w-6" src={checkGood} alt="check good icon" />
               ) : (
-                <img className=" w-6" src={checkGood} alt="check good icon" />
+                "02"
               )}
             </div>
           </div>
           <p className="mt-4">Checkout</p>
         </div>
-        <span className="  -z-10 absolute left-1/2 w-1/3 top-1/4 bg-main h-1"></span>
+        <span
+          className={`absolute left-1/2 top-1/4 -z-10 w-1/3 ${
+            step >= 2 ? "bg-main" : "bg-gray-300"
+          } h-1`}
+        ></span>
         <div>
-          <div className="flex justify-center items-center">
-            <div className=" font-medium shadow text-center rounded-full text-green-700 w-10 p-2 bg-white">
-              {3 ? (
-                "03"
+          <div className="flex items-center justify-center">
+            <div
+              className={`w-10 rounded-full p-2 text-center font-medium shadow ${
+                step >= 3 ? "active-steps" : "in-active"
+              }`}
+            >
+              {step >= 3 ? (
+                <img className="w-6" src={checkGood} alt="check good icon" />
               ) : (
-                <img className=" w-6" src={checkGood} alt="check good icon" />
+                "03"
               )}
             </div>
           </div>
@@ -77,63 +99,75 @@ function StepsLoader() {
   );
 }
 
-function ShoppingCart() {
+export function ShoppingCart({ setSubmit, proceed, setProceed }) {
   return (
     <>
-      <div className="flex justify-between ml-2 items-start">
-        {/* <BillingShippingInfo /> */}
-        <SummaryTable />
-        <OrderSummary />
+      <div className="ml-2 flex items-start justify-between">
+        {proceed ? (
+          <BillingShippingInfo setSubmit={setSubmit} />
+        ) : (
+          <SummaryTable proceed={proceed} setProceed={setProceed} />
+        )}
+
+        <OrderSummary proceed={proceed} setProceed={setProceed} />
       </div>
     </>
   );
 }
 
-function SummaryTable() {
+function SummaryTable({ proceed, setProceed }) {
   return (
-    <div className=" ml-leftSpace border w-shoppingCart h-scartandorder p-5 mr-3 rounded-xl">
-      <div className=" mb-font20 flex justify-between items-center">
-        <h2 className="  font-semibold text-2xl">Shopping cart</h2>
-        <h4 className=" text-main font-medium">Proceed to checkout</h4>
+    <div className="ml-leftSpace mr-3 h-scartandorder w-shoppingCart rounded-xl border p-5">
+      <div className="mb-font20 flex items-center justify-between">
+        <h2 className="text-2xl font-semibold">Shopping cart</h2>
+        <h4
+          className="cursor-pointer font-medium text-main"
+          onClick={() => {
+            setProceed(true);
+          }}
+        >
+          Proceed to checkout
+        </h4>
       </div>
-      <div className=" w-full">
+
+      <div className="w-full">
         <table className="w-full">
           <thead className="">
-            <tr className=" text-main bg-light">
-              <th className=" p-font20 text-left">item</th>
-              <th className=" p-font20 text-left">Price</th>
-              <th className=" p-font20 text-left ">Quantity</th>
-              <th className=" p-font20 text-left ">Total</th>
+            <tr className="bg-light text-main">
+              <th className="p-font20 text-left">item</th>
+              <th className="p-font20 text-left">Price</th>
+              <th className="p-font20 text-left">Quantity</th>
+              <th className="p-font20 text-left">Total</th>
               <th></th>
             </tr>
           </thead>
           <tbody className="">
-            <tr className=" text-darkColor t w-full">
-              <td className=" pt-font20 pl-font20">
+            <tr className="t w-full text-darkColor">
+              <td className="pl-font20 pt-font20">
                 <div>
                   <span>#4363</span> <br />
                   <span>Quinn's Fertilizer</span>
                 </div>
               </td>
-              <td className=" pt-font20 pl-font20">$2030.40</td>
-              <td className=" pt-font20 pl-font20">
-                <div className=" w-fit flex items-center border rounded-full">
+              <td className="pl-font20 pt-font20">$2030.40</td>
+              <td className="pl-font20 pt-font20">
+                <div className="flex w-fit items-center rounded-full border">
                   <img
-                    className=" pr-3 cursor-pointer"
+                    className="cursor-pointer pr-3"
                     src={subBtn}
                     alt="minus icon"
                   />
                   <span>1</span>
                   <img
-                    className=" pl-3 cursor-pointer"
+                    className="cursor-pointer pl-3"
                     src={addBtn}
                     alt="add icon"
                   />
                 </div>
               </td>
-              <td className=" pt-font20 pl-font20">$2060.80</td>
-              <td className=" pt-font20 pl-font20">
-                <img className=" cursor-pointer" src={x} alt="minus icon" />
+              <td className="pl-font20 pt-font20">$2060.80</td>
+              <td className="pl-font20 pt-font20">
+                <img className="cursor-pointer" src={x} alt="minus icon" />
               </td>
             </tr>
           </tbody>
@@ -143,28 +177,31 @@ function SummaryTable() {
   );
 }
 
-function OrderSummary() {
+export function OrderSummary({ proceed, setProceed }) {
   return (
-    <div className="border mr-rightSpace w-orderSummary h-scartandorder p-5 rounded-xl">
-      <h2 className=" mb-5 text-2xl font-medium">Order Summary</h2>
+    <div className="mr-rightSpace h-scartandorder w-orderSummary rounded-xl border p-5">
+      <h2 className="mb-5 text-2xl font-medium">Order Summary</h2>
       <div>
-        <div className=" text-gray-400 my-4 flex justify-between items-center">
+        <div className="my-4 flex items-center justify-between text-gray-400">
           <p>Quantity of items in cart:</p>
           <p>2</p>
         </div>
-        <div className=" text-gray-400 flex justify-between items-center my-5">
+        <div className="my-5 flex items-center justify-between text-gray-400">
           <p>Cost of items in cart:</p>
           <p>$2060.80</p>
         </div>
-        <div className="flex justify-between items-center my-5 font-bold">
+        <div className="my-5 flex items-center justify-between font-bold">
           <p>Sub Total:</p>
           <p>$2060.80</p>
         </div>
       </div>
-      <button className=" text-white bg-green-700 w-full text-center p-3 rounded-full mt-3 mb-4">
-        Proceed to Checkout
+      <button
+        className="mb-4 mt-3 w-full rounded-full bg-green-700 p-3 text-center text-white"
+        onClick={() => setProceed(true)}
+      >
+        {proceed ? "Submit Order" : "Proceed to Checkout"}
       </button>
-      <p className=" mb-2 text-center font-medium ">
+      <p className="mb-2 text-center font-medium">
         Plus freight and applicable taxes
       </p>
     </div>

@@ -23,6 +23,7 @@ module.exports = {
         orderConfirm: "1170px",
         top1: "1040px",
         modalButton: "181px",
+        // backdropW: "150vh",
         mycart: "460px",
       },
       height: {
@@ -33,7 +34,7 @@ module.exports = {
         modalHeight: "352px",
         modalBtnHeight: "52px",
         mycart: "397px",
-        backdropH: "160vh",
+        backdropH: "100vh",
         orderConfirm: "628px",
       },
       padding: {
